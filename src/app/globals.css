@@ -1,6 +1,6 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
   @layer base {
     :root {
@@ -73,4 +73,35 @@
     body {
       @apply bg-background text-foreground;
     }
+  }
+
+  :root {
+    --primary-color: #334155;
+    --secondary-color: #64748B;
+    --tertiary-color: #E2E8F0;
+    --quaternary-color: #18181B;
+    --table-fillin: #F8FAFC;
+    --secondary-boundary-color: #E2E8F0;
+  }
+
+  .my-input {
+    background-image: url("../../public/icons/search.svg");
+    background-position: 12px 14px;
+    background-repeat: no-repeat;
+    background-size: 1.2em;
+  }
+
+  input[type=checkbox] {
+    appearance: none;
+    height: 1.3em;
+    width: 1.3em;
+    border: 1px solid var(--tertiary-color, gray);
+    border-radius: 6px;
+  }
+
+  input[type=checkbox]:checked {
+    background-color: var(--quaternary-color, black);
+    background-image: url("../../public/icons/check.svg");
+    background-repeat: no-repeat;
+    background-position: center;
   }

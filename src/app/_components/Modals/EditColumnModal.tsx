@@ -46,7 +46,7 @@ const List = () => {
                     columnsData.map((column: EditColumns) => {
                         return <li key={column.id} className="flex items-center justify-between cursor-pointer">
                             <input id={`column-${column.id}`} type="checkbox" checked={column.isSelected} onClick={() => showCheckBox(column.id)} className="cursor-pointer" />
-                            <label htmlFor={`column-${column.id}`} className="border-[1px] cursor-pointer border-tertiary-color rounded-[6px] py-[0.375em] px-[0.75em] w-[90%]">
+                            <label htmlFor={`column-${column.id}`} className="border-[1px] cursor-pointer border-tertiary-color rounded-button py-[0.375em] px-[0.75em] w-[90%]">
                                 <p className="text-primary-color font-medium text-[0.875rem]">{column.title}</p>
                             </label>
                         </li>

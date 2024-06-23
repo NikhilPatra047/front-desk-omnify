@@ -28,9 +28,9 @@ export default function TableDisplay() {
     }), [filterSelected]);
 
     return (
-        <div className="border-[1px] border-[--tertiary-color] rounded-[6px] mt-6"> 
+        <div className="border-[1px] border-[--tertiary-color] rounded-button mt-6"> 
             <table className="w-full">
-                <thead className="capitalize rounded-t-[6px] block bg-[--table-fillin]">
+                <thead className="capitalize rounded-t-button block bg-[--table-fillin]">
                     <tr className="flex justify-between w-full py-[0.5em] px-[1em] rounded-tl-[10px] rounded-tr-[10px]">
                         <th>
                             <input className="checkbox" type="checkbox" checked={false} />
