@@ -17,7 +17,8 @@ export default function TableDisplay() {
         const filteredRow: FilterRow = {};
         for (const key in data) {
             if (filterSelected?.includes(key)) {
-                filteredRow[key] = data[key];
+                const newKey = key as string | number;
+                filteredRow[key] = data[newKey];
             }
         }
         return filteredRow;
