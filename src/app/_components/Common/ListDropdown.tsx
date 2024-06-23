@@ -40,23 +40,23 @@ export default function ListDropdown(props: ListProps) {
             <label htmlFor="orders">
                 <p className="text-primary-color text-[0.875rem] font-medium">{ label }</p>
             </label>
-            <div onClick={() => setIsOpen(!isOpen)} className="custom-select shadow-sm mt-2" id="orders">
-                <p className="font-medium text-[0.875rem] text-primary-color">{ selectLabel }</p>
+            <div onClick={() => setIsOpen(!isOpen)} className={`custom-select shadow-sm mt-2 border-[2px] ${isOpen? "border-[--secondary-color]": "border-[--boundary-color]"}`} id="orders">
+                <p className="font-medium text-[0.875rem] text-secondary-color">{ selectLabel }</p>
                 <Image className="absolute top-[0.7em] right-2" src={arrow_down} alt="" />
-                {isOpen && <div className="absolute top-12 z-10 left-0 w-full bg-white border-[1px] border-[--secondary-boundary-color] rounded-[6px]">
-                    <ul>
+                <div className={`${isOpen? "translate-y-0 opacity-100": "opacity-0 translate-y-[-10px]"} absolute top-12 z-10 left-0 w-full bg-white border-[1px] border-[--secondary-boundary-color] rounded-button transition-all duration-150 ease-in-out`}>
+                    <ul className={`${!isOpen && "hidden"}`}>
                         {
                             list.map((item: List) => {
                                 return <li onClick={() => {
                                     selectedOption(item.id);
-                                }} className="py-2 px-[0.8em] hover:bg-[--table-fillin] cursor-pointer rounded-[6px] flex items-center justify-between" key={item.id}>
+                                }} className="py-2 px-[0.8em] hover:bg-[--table-fillin] cursor-pointer rounded-button flex items-center justify-between" key={item.id}>
                                     <p className="text-primary-color font-medium text-[0.875rem]">{item.label}</p>
                                     { selectOption === item.id && <Image src={select} alt="" /> }
                                 </li>
                             })
                         }
                     </ul>
-                </div>}
+                </div>
             </div>
         </>
     )

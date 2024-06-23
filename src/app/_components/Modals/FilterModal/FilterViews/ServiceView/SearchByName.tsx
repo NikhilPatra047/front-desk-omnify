@@ -63,7 +63,7 @@ export default function SearchByNameView() {
 
     return (
         <div className="mt-6">
-            <div className="bg-[--table-fillin] custom-select rounded-[6px] flex items-center gap-2">
+            <div className="bg-[--table-fillin] border-[2px] border-[--boundary-color] custom-select rounded-[6px] flex items-center gap-2">
                 <Image height={20} width={20} src={search} alt="Search" />
                 <input value={searchInput} onChange={(e) => handleSearch(e)} type="search" className="w-full bg-[--table-fillin] outline-none" />
             </div>

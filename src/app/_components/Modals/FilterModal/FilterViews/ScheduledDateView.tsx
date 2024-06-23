@@ -21,7 +21,11 @@ const DatePicker = () => {
     return (
         <Popover>
             <PopoverTrigger asChild>
+                <label htmlFor="from">
+                    <p>From</p>
+                </label>
                 <Button
+                    id="from"
                     variant={"outline"}
                     className={cn(
                         "w-[280px] justify-start text-left font-normal",
