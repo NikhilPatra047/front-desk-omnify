@@ -30,7 +30,7 @@ export default function TableDisplay() {
     return (
         <div className="border-[1px] border-[--tertiary-color] rounded-button mt-6"> 
             <table className="w-full">
-                <thead className="capitalize rounded-t-button block bg-[--table-fillin]">
+                <thead className="capitalize rounded-t-button block bg-[--table-fillin] border-b-[1px] border-b-tertiary-color">
                     <tr className="flex justify-between w-full py-[0.5em] px-[1em] rounded-tl-[10px] rounded-tr-[10px]">
                         <th>
                             <input className="checkbox" type="checkbox" checked={false} />
@@ -40,7 +40,7 @@ export default function TableDisplay() {
                                 if (column.isSelected) {
                                     return (
                                         <th key={column.id}>
-                                            <Image src={column.icon} alt={column.alt} />
+                                            <Image height={15} width={15} src={column.icon} alt={column.alt} />
                                             <p>{column.title}</p>
                                         </th>
                                     )
@@ -49,7 +49,7 @@ export default function TableDisplay() {
                         }
                     </tr>
                 </thead>
-                <tbody className="block rounded-b-[6px] h-[60vh] overflow-y-scroll">
+                <tbody className="block rounded-b-button h-[60vh] overflow-y-scroll">
                     {
                         filterRows.map((data: FilterRow, index) => {
                             return (

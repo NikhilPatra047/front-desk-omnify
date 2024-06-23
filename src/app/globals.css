@@ -105,3 +105,38 @@
     background-repeat: no-repeat;
     background-position: center;
   }
+
+  table > thead > tr > th {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  table > thead > tr > th:first-child {
+    width: 5%;
+  }
+
+  table > tbody > tr > td {
+    width: 25%;
+    padding-right: .5em;
+  }
+
+  table > tbody > tr {
+    border-bottom: 1px solid var(--tertiary-color, gray);
+  }
+
+  table > tbody > tr:last-child {
+    border-bottom: none;
+  }
+
+  table > tbody > tr > td:first-child {
+    width: 5%;
+    padding: 0;
+  }
+
+  table > thead > tr > th > p {
+    color: var(--secondary-color, gray);
+    font-weight: 500; 
+    font-size: 0.75rem;
+  }
