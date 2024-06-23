@@ -8,7 +8,7 @@ import ApplyButton from "../Buttons/ApplyButton";
 import { useUpdateEditColumnContext } from "@/app/_context/context";
 
 const List = () => {
-    const { updateTableColumns } = useUpdateEditColumnContext();
+    const contextVariable = useUpdateEditColumnContext();
     const [columnsData, setColumnsData] = useState<EditColumns[]>(editColumns);
 
     const showCheckBox = (id: number) => {
@@ -17,6 +17,7 @@ const List = () => {
                 return item;
             }
         });
+
         if (findItem !== undefined) {
             findItem.isSelected = !findItem.isSelected;
         }
@@ -55,7 +56,9 @@ const List = () => {
             </ul>
             <div className="flex items-center justify-between">
                 <DefaultButton onClickFunc={() => reset()}/>
-                <ApplyButton styles="w-[45%]" onClickFunc={() => updateTableColumns(columnsData)} />
+                <ApplyButton styles="w-[45%]" onClickFunc={() => {
+                    contextVariable?.updateTableColumns(columnsData);
+                }} />
             </div>
         </>
     )

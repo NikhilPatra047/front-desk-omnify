@@ -27,8 +27,8 @@ export type Selected_Service = {
 export type FilterSelection = {
     scheduledData: {
         orders: string | null,
-        fromDate: string | null,
-        toDate: string | null
+        fromDate: number | null,
+        toDate: number | null
     },
     people: { id: number, name: string, type: string }[],
     services: {
@@ -49,6 +49,8 @@ export type FilterSelectionContextType = {
     resetServicesByName: () => void,
     storeListSelection: (id: number, label: string, selection: string) => void, 
     resetAllSelections: () => void,
+    filterAddDate: (date: number, label: string) => void,
+    resetDateSelection: () => void,
 }
 
 export type SidebarContextType = {

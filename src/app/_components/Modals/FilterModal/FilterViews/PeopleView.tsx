@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { search } from "../../../../../../public";
+import { cancel_icon, search } from "../../../../../../public";
 import TypeTag from "@/app/_components/Tag/TypeTag";
 import { ChangeEvent, useState } from "react";
 import { useFilterDataContext, useFilterSelectionContext } from "@/app/_context/context";
@@ -8,7 +8,7 @@ import { Selected_People } from "../../../../../../types/Filter";
 
 const People = (props: { person: Selected_People }) => {
     const { person } = props;
-    const { filterAddPeople, filterSelection } = useFilterSelectionContext();
+    const selectionContext = useFilterSelectionContext();
 
     const handleSelection = (id: number, name: string, type: string) => {
         const addPerson = {
@@ -16,11 +16,11 @@ const People = (props: { person: Selected_People }) => {
             name,
             type
         };
-        filterAddPeople(addPerson);
+        selectionContext?.filterAddPeople(addPerson);
     };
 
     const isChecked = (id: number) => {
-        const findPerson = filterSelection.people.find((person: Selected_People) => person.id === id);
+        const findPerson = selectionContext?.filterSelection.people.find((person: Selected_People) => person.id === id);
         return findPerson ? true : false;
     };
 
@@ -36,8 +36,8 @@ const People = (props: { person: Selected_People }) => {
 }
 
 export default function PeopleView() {
-    const { filterPeopleList } = useFilterDataContext();
-    const { filterSelection } = useFilterSelectionContext();
+    const filterContext = useFilterDataContext();
+    const selectionContext = useFilterSelectionContext();
     const [searchInput, setSearchInput] = useState<string>("");
     const [people, setPeople] = useState<Selected_People[]>([]);
 
@@ -47,9 +47,14 @@ export default function PeopleView() {
             setPeople([]);
         } else {
             const searchInputLowerCase = event.target.value.toLowerCase();
-            const result = filterPeopleList(searchInputLowerCase);
+            const result = filterContext?.filterPeopleList(searchInputLowerCase) as Selected_People[];
             setPeople(result);
         }
+    }
+
+    const clearSearch = () => {
+        setPeople([]);
+        setSearchInput("");
     }
 
     return (
@@ -57,11 +62,12 @@ export default function PeopleView() {
             <div className="bg-[--table-fillin] border-[2px] border-[--boundary-color] custom-select rounded-button flex items-center gap-2">
                 <Image height={20} width={20} src={search} alt="Search" />
                 <input value={searchInput} onChange={(e) => handleSearch(e)} type="search" name="" id="" className="w-full bg-[--table-fillin] outline-none" />
+                <button onClick={clearSearch} className={`${searchInput.length === 0 && "hidden"} w-fit absolute top-[.9rem] right-3`} type="button"><Image src={cancel_icon} alt="cancel" /></button>
             </div>
             <div className="mt-4">
                 <ul className="space-y-2 mt-2">
                     {
-                        filterSelection.people.map((person: Selected_People) => {
+                        selectionContext?.filterSelection.people.map((person: Selected_People) => {
                             return <People key={person.id} person={person} />
                         })
                     }

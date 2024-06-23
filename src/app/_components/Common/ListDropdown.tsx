@@ -3,26 +3,40 @@
 import Image from "next/image";
 import { arrow_down, select } from "../../../../public";
 import { List, ListProps } from "../../../../types/ListProps";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {  useFilterSelectionContext } from "@/app/_context/context";
 
 export default function ListDropdown(props: ListProps) {
     const { label, list, selectedLabel, id } = props;
+    const selectionContext = useFilterSelectionContext();
 
-    const { storeListSelection, filterSelection, resetServicesByName } = useFilterSelectionContext();
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [selectLabel, setSelectLabel] = useState<string>(() => {
-        return selectedLabel? selectedLabel: list[0].label;
+        return selectedLabel !== null? selectedLabel: list[0].label;
     });
-    const [selectOption, setSelectOption] = useState<number>(0); 
+
+    const [selectOption, setSelectOption] = useState<number>(() => {
+        const findName = list.find((item: List) => item.label === selectedLabel);
+        if (findName) {
+            return findName.id
+        } else {
+            return 0;
+        }
+    }); 
+
+    useEffect(() => {
+        const findName = list.find((item: List) => item.label === selectedLabel);
+        setSelectLabel(selectedLabel !== null? selectedLabel: list[0].label);
+        setSelectOption(findName? findName.id: 0);
+    }, [selectedLabel, list]);
 
     const selectedOption = (selectedId: number) => {
-        if (id === 2 && filterSelection.services.byName.length > 0) {
+        if (id === 2 && selectionContext!.filterSelection.services.byName.length > 0) {
             clearSelection();
         }
         const findLabel = list.find((item: List) => item.id === selectedId);
         if (findLabel) {
-            storeListSelection(id, label, findLabel.label)
+            selectionContext?.storeListSelection(id, label, findLabel.label)
             setSelectLabel(findLabel.label);
         }
         setSelectOption(selectedId);
@@ -31,7 +45,7 @@ export default function ListDropdown(props: ListProps) {
 
     const clearSelection = () => {
         if (id === 2) {
-            resetServicesByName();
+            selectionContext?.resetServicesByName();
         }
     }
 

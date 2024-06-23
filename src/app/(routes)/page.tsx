@@ -46,7 +46,7 @@ export default function Home() {
       <div className="p-4">
         <h1 className="font-semibold text-[1.25rem] text-primary-color">Waitlist</h1>
         <div className="flex justify-between items-center my-4">
-          <ListSelection tag={"All Waitlists"} count={"100"} />
+          <ListSelection tag={"All Waitlists"} count={"100"} styles="border-[1px] border-[--secondary-color]" />
           <ListSelection tag={"Newly Added"} count={"50"} />
           <ListSelection tag={"Leads"} count={"20"} />
         </div>

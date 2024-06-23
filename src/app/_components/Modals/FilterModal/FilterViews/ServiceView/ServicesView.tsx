@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 import SearchByNameView from "./SearchByName";
 import SearchByTagView from "./SearchByTag";
+import { useFilterSelectionContext } from "@/app/_context/context";
 
 export default function ServicesView() {
     const [selectOption, setSelectOption] = useState<number>(0);

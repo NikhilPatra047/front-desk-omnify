@@ -1,6 +1,6 @@
 "use client";
 
-import { useFilterOptionContext } from "@/app/_context/context";
+import { useFilterOptionContext, useFilterSelectionContext, useUpdateEditColumnContext } from "@/app/_context/context";
 import ApplyButton from "../../Buttons/ApplyButton";
 import DefaultButton from "../../Buttons/DefaultButton";
 import FilterOptionList from "./FilterOptionList";
@@ -9,7 +9,9 @@ import ScheduledDateView from "./FilterViews/ScheduledDateView";
 import ServicesView from "./FilterViews/ServiceView/ServicesView";
 
 export default function FilterModal() {
-    const { options } = useFilterOptionContext();
+    const optionContext = useFilterOptionContext();
+    const selectionContext = useFilterSelectionContext();
+
     return (
         <div className="absolute left-0 top-12 w-[612px] border-[1px] border-tertiary-color drop-shadow-xl rounded-[12px] bg-white">
             <div className="flex border-b-[1px] border-b-[--tertiary-color]">
@@ -18,16 +20,16 @@ export default function FilterModal() {
                 </div>
                 <div className="bg-white rounded-tr-[12px]">
                     {
-                        options === 0
+                        optionContext?.options === 0
                         ? <ScheduledDateView />
-                        : options === 1
+                        : optionContext?.options === 1
                           ? <PeopleView />
                           : <ServicesView />
                     }
                 </div>
             </div>
             <div className="flex items-center justify-end gap-2 p-4">
-                <DefaultButton />
+                <DefaultButton onClickFunc={selectionContext?.resetAllSelections} />
                 <ApplyButton />
             </div>
         </div>

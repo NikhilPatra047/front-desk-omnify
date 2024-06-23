@@ -6,6 +6,7 @@ import { editColumns } from "../../../data/editColumns";
 import { FilterContext, FilterData, FilterSelection, FilterSelectionContextType, Selected_People, Selected_Service, SidebarContextType } from "../../../types/Filter";
 import { tableData } from "../../../data/tableData";
 import { TableData } from "../../../types/TableData";
+import { FilterRow } from "../../../types/EditColumns";
 
 const EditColumnContext = createContext<ColumnContext | null>(null);
 const UpdateEditColumnContext = createContext<UpdateColumnContext | null>(null);
@@ -59,6 +60,43 @@ export default function ContextProvider({ children }: { children: ReactNode }) {
                     statusType: null,
                 },
             },
+        });
+    }
+
+    const filterAddDate = (date: number, label: string) => {
+        if (label === "From") {
+            setFilterSelection((prevState: FilterSelection) => {
+                return {
+                    ...prevState, 
+                    scheduledData: {
+                        ...prevState.scheduledData,
+                        fromDate: date,
+                    }
+                }
+            });
+        } else {
+            setFilterSelection((prevState: FilterSelection) => {
+                return {
+                    ...prevState, 
+                    scheduledData: {
+                        ...prevState.scheduledData,
+                        toDate: date,
+                    }
+                }
+            });
+        }
+    }
+
+    const resetDateSelection = () => {
+        setFilterSelection((prevState: FilterSelection) => {
+            return {
+                ...prevState, 
+                scheduledData: {
+                    ...prevState.scheduledData,
+                    fromDate: null,
+                    toDate: null,
+                }
+            }
         });
     }
 
@@ -181,8 +219,8 @@ export default function ContextProvider({ children }: { children: ReactNode }) {
         }
     }
 
-    const updateTableColumns = useCallback((columns: EditColumns[]) => {
-        setColumns(columns);
+    const updateTableColumns = useCallback((columnsData: EditColumns[]) => {
+        setColumns(columnsData);
     }, []);
 
     const filterPeopleList = (searchInput: string) => {
@@ -220,7 +258,7 @@ export default function ContextProvider({ children }: { children: ReactNode }) {
         <SidebarContext.Provider value={{ sidebar, handleSidebar }}>
             <FilterOptionContext.Provider value={{ options, switchOption }}>
                 <FilterDataContext.Provider value={{ filterPeopleList, filterServiceList }}>
-                    <FilterSelectionContext.Provider value={{ filterSelection, filterAddPeople, filterAddService, resetServicesByTag, resetServicesByName, storeListSelection, resetAllSelections }}>
+                    <FilterSelectionContext.Provider value={{ filterSelection, filterAddPeople, filterAddService, resetServicesByTag, resetServicesByName, storeListSelection, resetAllSelections, resetDateSelection, filterAddDate  }}>
                         <EditColumnContext.Provider value={{ columns }}>
                             <UpdateEditColumnContext.Provider value={{ setColumns, updateTableColumns }}>
                                 {children}

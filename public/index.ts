@@ -27,5 +27,6 @@ import inbox from "./icons/inbox.svg";
 import layout_dashboard from "./icons/layout-dashboard.svg";
 import help_circle from "./icons/help-circle.svg";
 import link_icon from "./icons/secondary icon.svg";
+import cancel_icon from "./icons/cancel_icon.svg";
 
-export { hourglass, Frame, ellipse, calendar_days, link_icon, arrow_left_right, arrow_down, double_users, services, filter, search, regenerate, open, download, circle_dot, calendar, globe, inbox, layout_dashboard, help_circle, user, hash, black_dot, blue_dot, green_dot, check, select, app_logo, sidebar_icon };
+export { cancel_icon, hourglass, Frame, ellipse, calendar_days, link_icon, arrow_left_right, arrow_down, double_users, services, filter, search, regenerate, open, download, circle_dot, calendar, globe, inbox, layout_dashboard, help_circle, user, hash, black_dot, blue_dot, green_dot, check, select, app_logo, sidebar_icon };

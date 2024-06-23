@@ -8,7 +8,7 @@ export default function StatusTag({ status }: { status: string }) {
         <td>
             <div style={{ backgroundColor: bgColor }} className="flex gap-2 items-center w-fit rounded-[16px] py-[0.125em] px-[0.5em]">
                 <Image src={logo} alt="" />
-                <p style={{ color: textColor }} className="capitalize">{ status }</p>
+                <p style={{ color: textColor }} className="capitalize font-medium text-[0.75rem]">{ status }</p>
             </div>
         </td>
     )

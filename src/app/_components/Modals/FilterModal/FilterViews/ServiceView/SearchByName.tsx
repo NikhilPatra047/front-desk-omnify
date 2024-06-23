@@ -1,18 +1,18 @@
 import TypeTag from "@/app/_components/Tag/TypeTag";
 import { ChangeEvent, useState } from "react";
 import Image from "next/image";
-import { search } from "../../../../../../../public";
+import { search, cancel_icon } from "../../../../../../../public";
 import { TableData } from "../../../../../../../types/TableData";
 import { useFilterDataContext, useFilterSelectionContext } from "@/app/_context/context";
 import { Selected_Service } from "../../../../../../../types/Filter";
 
 const Services = (props: { service: Selected_Service }) => {
     const { service } = props;
-    const { filterAddService, filterSelection, resetServicesByTag } = useFilterSelectionContext();
+    const selectionContext = useFilterSelectionContext();
 
     const handleSelection = (id: number, name: string, type: string, status: string) => {
-        if (filterSelection.services.byTags.serviceType !== null || filterSelection.services.byTags.statusType !== null) {
-            resetServicesByTag();
+        if (selectionContext?.filterSelection.services.byTags.serviceType !== null || selectionContext?.filterSelection.services.byTags.statusType !== null) {
+            selectionContext?.resetServicesByTag();
         }
         const addService = {
             id,
@@ -20,11 +20,11 @@ const Services = (props: { service: Selected_Service }) => {
             type,
             status
         };
-        filterAddService(addService);
+        selectionContext?.filterAddService(addService);
     };
 
     const isChecked = (id: number) => {
-        const findService = filterSelection.services.byName.find((service: Selected_Service) => service.id === id);
+        const findService = selectionContext?.filterSelection.services.byName.find((service: Selected_Service) => service.id === id);
         return findService ? true : false;
     };
     
@@ -45,8 +45,8 @@ const Services = (props: { service: Selected_Service }) => {
 }
 
 export default function SearchByNameView() {
-    const { filterServiceList } = useFilterDataContext();
-    const { filterSelection } = useFilterSelectionContext();
+    const dataContext = useFilterDataContext();
+    const selectionContext = useFilterSelectionContext();
     const [searchInput, setSearchInput] = useState<string>("");
     const [services, setServices] = useState<Selected_Service[]>([]);
 
@@ -56,9 +56,14 @@ export default function SearchByNameView() {
             setServices([]);
         } else {
             const searchInputToLower = event.target.value.toLowerCase();
-            const result = filterServiceList(searchInputToLower);
+            const result = dataContext?.filterServiceList(searchInputToLower) as Selected_Service[];
             setServices(result);
         }
+    }
+
+    const clearSearch = () => {
+        setServices([]);
+        setSearchInput("");
     }
 
     return (
@@ -66,11 +71,12 @@ export default function SearchByNameView() {
             <div className="bg-[--table-fillin] border-[2px] border-[--boundary-color] custom-select rounded-[6px] flex items-center gap-2">
                 <Image height={20} width={20} src={search} alt="Search" />
                 <input value={searchInput} onChange={(e) => handleSearch(e)} type="search" className="w-full bg-[--table-fillin] outline-none" />
+                <button onClick={clearSearch} className={`${searchInput.length === 0 && "hidden"} w-fit absolute top-[.9rem] right-3`} type="button"><Image src={cancel_icon} alt="cancel" /></button>
             </div>
             <div className="mt-4">
                 <ul className="space-y-2 mt-2">
                     {
-                        filterSelection.services.byName.map((service: Selected_Service) => {
+                        selectionContext?.filterSelection.services.byName.map((service: Selected_Service) => {
                             return <Services key={service.id} service={service} />
                         })
                     }
