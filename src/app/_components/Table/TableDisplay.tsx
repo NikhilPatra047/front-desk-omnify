@@ -51,8 +51,9 @@ export default function TableDisplay() {
                         filteredRows.map((data: FilterRow) => {
                             return (
                                 <tr key={data.id} className="flex py-[0.5em] px-[1em]">
-                                    <td aria-label={`check-${data.id}-${data.payer}`}>
-                                        <input aria-labelledby={`check-${data.id}-${data.payer}`} id={`check-${data.id}`} className="checkbox" type="checkbox" />
+                                    <td>
+                                        <label htmlFor={`check-${data.id}-${data.payer}`}></label>
+                                        <input id={`check-${data.id}-${data.payer}`}className="checkbox" type="checkbox" />
                                     </td>
                                     {data["created on"] && <td><p>{data["created on"]}</p>
                                     </td>}
