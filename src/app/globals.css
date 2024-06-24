@@ -112,14 +112,17 @@
   }
 
   .table-display > thead > tr > th {
-    width: 146px;
+    width: 100%;
+    min-width: 146px;
     display: flex;
     align-items: center;
     gap: 5px;
   }
 
   .table-display > thead > tr > th:first-child {
-    width: 20px;
+    width: 5%;
+    min-width: 40px;
+    padding-right: .5em;
   }
 
   .table-display > tbody > tr > td {
@@ -136,8 +139,8 @@
   }
 
   .table-display > tbody > tr > td:first-child {
-    width: 20px;
-    padding: 0;
+    width: 40px;
+    padding-right: .5em;
   }
 
   .table-display > thead > tr > th > p {

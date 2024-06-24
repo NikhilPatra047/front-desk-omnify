@@ -56,7 +56,8 @@ export default function SearchByNameView() {
             setServices([]);
         } else {
             const searchInputToLower = event.target.value.toLowerCase();
-            const result = dataContext?.filterServiceList(searchInputToLower) as Selected_Service[];
+            let result = dataContext?.filterServiceList(searchInputToLower) as Selected_Service[];
+            result = result.slice(0, 10);
             setServices(result);
         }
     }

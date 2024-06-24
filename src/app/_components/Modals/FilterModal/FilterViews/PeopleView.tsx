@@ -47,7 +47,8 @@ export default function PeopleView() {
             setPeople([]);
         } else {
             const searchInputLowerCase = event.target.value.toLowerCase();
-            const result = filterContext?.filterPeopleList(searchInputLowerCase) as Selected_People[];
+            let result = filterContext?.filterPeopleList(searchInputLowerCase) as Selected_People[];
+            result = result.slice(0, 10)
             setPeople(result);
         }
     }
@@ -62,7 +63,7 @@ export default function PeopleView() {
             <div className="bg-[--table-fillin] border-[2px] border-[--boundary-color] custom-select rounded-button flex items-center gap-2">
                 <Image height={20} width={20} src={search} alt="Search" />
                 <input value={searchInput} onChange={(e) => handleSearch(e)} type="search" name="" id="" className="w-full bg-[--table-fillin] outline-none" />
-                <button onClick={clearSearch} className={`${searchInput.length === 0 && "hidden"} w-fit absolute top-[.9rem] right-3`} type="button"><Image src={cancel_icon} alt="cancel" /></button>
+                <button type="button" onClick={clearSearch} className={`${searchInput.length === 0 && "hidden"} w-fit absolute top-[.9rem] right-3`}><Image src={cancel_icon} alt="cancel" /></button>
             </div>
             <div className="mt-4">
                 <ul className="space-y-2 mt-2">

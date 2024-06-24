@@ -52,9 +52,9 @@ export default function ListDropdown(props: ListProps) {
     return (
         <>
             <label htmlFor="orders">
-                <p className="text-primary-color text-[0.875rem] font-medium">{ label }</p>
+                <span className="text-primary-color inline-block text-[0.875rem] font-medium">{ label }</span>
             </label>
-            <div onClick={() => setIsOpen(!isOpen)} className={`custom-select shadow-sm mt-2 border-[2px] ${isOpen? "border-[--secondary-color]": "border-[--boundary-color]"}`} id="orders">
+            <div role="select" aria-labelledby="orders" onClick={() => setIsOpen(!isOpen)} className={`custom-select shadow-sm mt-2 border-[2px] ${isOpen? "border-[--secondary-color]": "border-[--boundary-color]"}`} id="orders">
                 <p className="font-medium text-[0.875rem] text-secondary-color">{ selectLabel }</p>
                 <Image className="absolute top-[0.7em] right-2" src={arrow_down} alt="" />
                 <div className={`${isOpen? "translate-y-0 opacity-100": "opacity-0 translate-y-[-10px]"} absolute top-12 z-10 left-0 w-full bg-white border-[1px] border-[--secondary-boundary-color] rounded-button transition-all duration-150 ease-in-out`}>

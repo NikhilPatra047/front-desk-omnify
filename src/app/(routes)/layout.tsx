@@ -3,8 +3,10 @@ import Home from "./page";
 
 export default function Layout() {
   return (
-    <Navbar>
-      <Home />
-    </Navbar>
+    <div className="w-full max-w-[1500px] mx-auto">
+      <Navbar>
+        <Home />
+      </Navbar>
+    </div>
   );
 }

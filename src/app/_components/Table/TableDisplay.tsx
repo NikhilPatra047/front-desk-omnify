@@ -25,13 +25,12 @@ export default function TableDisplay() {
     }), [filterSelected]);
 
     return (
-        <div className="border-[1px] border-[--tertiary-color] rounded-button mt-6 w-full h-fit overflow-x-scroll"> 
-            <table className="table-display w-full ">
+        <div className="border-[1px] border-[--tertiary-color] rounded-button mt-6 w-full overflow-x-scroll max-h-[50vh]"> 
+            <table className="table-display w-full">
                 <thead className="capitalize rounded-t-button block bg-[--table-fillin] border-b-[1px] border-b-tertiary-color">
                     <tr className="flex justify-between w-full py-[0.5em] px-[1em] rounded-tl-[10px] rounded-tr-[10px]">
                         <th>
-                            <label htmlFor="checkbox-header"></label>
-                            <input id="checkbox-header" className="checkbox" type="checkbox" checked={false} />
+                            <div className="h-[1em] w-[1em] border-[1px] border-[--tertiary-color] rounded-[4px] drop-shadow-lg"></div>
                         </th>
                         {
                             EditColumn?.columns.map((column: EditColumns) => {
@@ -47,7 +46,7 @@ export default function TableDisplay() {
                         }
                     </tr>
                 </thead>
-                <tbody className="block rounded-b-button   overflow-y-scroll">
+                <tbody className="block max-h-[50vh] overflow-y-scroll rounded-b-button">
                     {
                         filteredRows.map((data: FilterRow) => {
                             return (

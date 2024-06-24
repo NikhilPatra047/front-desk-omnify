@@ -42,7 +42,7 @@ function EditColumn() {
 
 export default function Home() {
   return (
-    <main className="w-full h-fit max-w-[1500px] my-2 rounded-[6px] bg-white drop-shadow-xl">
+    <main className="w-full my-auto min-h-[95vh] rounded-[6px] bg-white drop-shadow-xl">
       <div className="p-4">
         <h1 className="font-semibold text-[1.25rem] text-primary-color">Waitlist</h1>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 my-4">

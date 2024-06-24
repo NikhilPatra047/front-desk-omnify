@@ -5,7 +5,7 @@ import { arrow_down, calendar, filter } from "../../../../../../public";
 import { scheduledListItem } from "../../../../../../data/scheduledListItem";
 import ListDropdown from "@/app/_components/Common/ListDropdown";
 import { useFilterOptionContext, useFilterSelectionContext } from "@/app/_context/context";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
@@ -34,6 +34,7 @@ export function DatePicker(props: { label: string }) {
                         <p className="text-[0.875rem] text-primary-color font-medium">{ label }</p>
                     </label>
                     <Button
+                    aria-labelledby={label}
                         id={label}
                         variant={"outline"}
                         className={cn(

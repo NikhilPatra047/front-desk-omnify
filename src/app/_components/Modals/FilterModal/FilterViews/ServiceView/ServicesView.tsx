@@ -18,13 +18,13 @@ export default function ServicesView() {
                 <div className="flex items-center gap-2 relative">
                     <input checked={isChecked(0)} onClick={() => setSelectOption(0)} type="radio" name="" id="search-name" />
                     <label htmlFor="search-name">
-                        <p>Search by name</p>
+                        <span className="inline-block text-primary-color font-normal text-[0.875rem]">Search by name</span>
                     </label>
                 </div>
                 <div className="flex items-center gap-2 relative">
                     <input checked={isChecked(1)} onClick={() => setSelectOption(1)} type="radio" name="" id="search-tags" />
                     <label htmlFor="search-tags">
-                        <p>Search by tags</p>
+                        <span className="">Search by tags</span>
                     </label>
                 </div>
             </div>

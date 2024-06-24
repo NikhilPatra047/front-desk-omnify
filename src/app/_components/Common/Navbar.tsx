@@ -114,8 +114,8 @@ function SidebarFooter() {
 export default function Navbar({ children }: { children: ReactNode }) {
   const sideBar = useSidebarContext();
   return (
-    <div className="flex gap-1">
-      <nav className={`bg-[--table-fillin] flex flex-col justify-between relative h-[100vh] ${sideBar?.sidebar? "w-[300px]": "w-[64px]"}`}>
+    <div className="flex gap-2">
+      <nav className={`bg-[--table-fillin] flex flex-col justify-between relative min-h-[100vh] ${sideBar?.sidebar? "w-[300px]": "w-[64px]"}`}>
         <div className="s">
           <SidebarHeader />
           <LocationSetter />
