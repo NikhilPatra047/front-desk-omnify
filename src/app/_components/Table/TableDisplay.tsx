@@ -25,7 +25,7 @@ export default function TableDisplay() {
     }), [filterSelected]);
 
     return (
-        <div className="border-[1px] border-[--tertiary-color] rounded-button mt-6 w-full overflow-x-scroll max-h-[50vh]"> 
+        <div className="border-[1px] border-[--tertiary-color] rounded-button mt-6 w-full overflow-x-scroll max-h-[70vh]"> 
             <table className="table-display w-full">
                 <thead className="capitalize rounded-t-button block bg-[--table-fillin] border-b-[1px] border-b-tertiary-color">
                     <tr className="flex justify-between w-full py-[0.5em] px-[1em] rounded-tl-[10px] rounded-tr-[10px]">
@@ -46,7 +46,7 @@ export default function TableDisplay() {
                         }
                     </tr>
                 </thead>
-                <tbody className="block max-h-[50vh] overflow-y-scroll rounded-b-button">
+                <tbody className="block max-h-[70vh] overflow-y-scroll rounded-b-button">
                     {
                         filteredRows.map((data: FilterRow) => {
                             return (

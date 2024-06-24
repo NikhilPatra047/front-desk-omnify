@@ -11,7 +11,7 @@ export default function FilterOptionList() {
         <ul className="filter-options cursor-pointer">
             <li role="button" onClick={() => option?.switchOption(0)} className={`${option?.options === 0 && "bg-[--tertiary-color]"}`}>
                 <Image height={16} width={16} src={calendar} alt="Scheduled Data" />
-                <p>Scheduled Data</p>
+            <p>Scheduled Data</p>
             </li>
             <li role="button" onClick={() => option?.switchOption(1)} className={`${option?.options === 1 && "bg-[--tertiary-color]"}`}>
                 <Image height={16} width={16} src={double_users} alt="People" />

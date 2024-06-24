@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { editColumns } from "../../../../data/editColumns";
 import { EditColumns } from "../../../../types/EditColumns";
 import DefaultButton from "../Buttons/DefaultButton";
@@ -12,11 +12,7 @@ const List = () => {
     const [columnsData, setColumnsData] = useState<EditColumns[]>(editColumns);
 
     const showCheckBox = (id: number) => {
-        const findItem = columnsData.find((item: EditColumns) => {
-            if (item.id === id) {
-                return item;
-            }
-        });
+        const findItem = columnsData.find((item: EditColumns) => item.id === id);
 
         if (findItem !== undefined) {
             findItem.isSelected = !findItem.isSelected;
@@ -30,15 +26,24 @@ const List = () => {
     const reset = () => {
         setColumnsData((prevState: EditColumns[]) => {
             const resetData = prevState.map((item: EditColumns) => {
-                return {
-                    ...item,
-                    isSelected: true
+                if (item.isSelected === false) {
+                    return {
+                        ...item,
+                        isSelected: true
+                    }
+                } else {
+                    return item;
                 }
             });
 
-            return [...resetData]
+            return resetData;
         });
     }
+
+
+    useEffect(() => {
+        console.log('ci', columnsData);
+    }, [columnsData]);
 
     return (
         <>
@@ -46,7 +51,7 @@ const List = () => {
                 {
                     columnsData.map((column: EditColumns) => {
                         return <li key={column.id} className="flex items-center justify-between cursor-pointer">
-                            <input id={`column-${column.id}`} type="checkbox" checked={column.isSelected} onClick={() => showCheckBox(column.id)} className="cursor-pointer" />
+                            <input id={`column-${column.id}`} type="checkbox" checked={column.isSelected} onChange={() => showCheckBox(column.id)} className="cursor-pointer" />
                             <label htmlFor={`column-${column.id}`} className="border-[1px] cursor-pointer border-tertiary-color rounded-button py-[0.375em] px-[0.75em] w-[90%]">
                                 <p className="text-primary-color font-medium text-[0.875rem]">{column.title}</p>
                             </label>

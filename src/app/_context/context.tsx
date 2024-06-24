@@ -219,8 +219,8 @@ export default function ContextProvider({ children }: { children: ReactNode }) {
         }
     }
 
-    const updateTableColumns = useCallback((columnsData: EditColumns[]) => {
-        setColumns(columnsData);
+    const updateTableColumns = useCallback((columns: EditColumns[]) => {
+        setColumns(columns);
     }, []);
 
     const filterPeopleList = (searchInput: string) => {
