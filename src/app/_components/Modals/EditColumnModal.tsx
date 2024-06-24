@@ -66,7 +66,7 @@ const List = () => {
 
 export default function EditColumnModal() {
     return (
-        <div className="rounded-[12px] bg-white border-[1px] border-tertiay-color p-4 w-[320px] absolute right-[-50px] drop-shadow-xl">
+        <div className="rounded-[12px] z-10 bg-white border-[1px] border-tertiay-color p-4 w-[320px] absolute right-[-50px] drop-shadow-xl">
             <div>
                 <h2 className="text-[1rem] font-medium text-black">Edit Columns</h2>
                 <p className="font-normal text-[0.875rem] text-primary-color mt-4">Select the columns to rearrange</p>

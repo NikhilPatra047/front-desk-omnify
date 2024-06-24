@@ -79,10 +79,10 @@ function SidebarFooter() {
   return (
     <div className="p-2">
       {/* Dashboard */}
-      <div className="flex items-center justify-between p-4">
+      <div className={`${sideBar?.sidebar && "flex items-center justify-between p-4"}`}>
         <div className={`flex items-center gap-2 ${!sideBar?.sidebar && "hidden"}`}>
-          <Image src={layout_dashboard} alt="Dashboard" />
-          <p className="font-medium text-primary-color text-[0.75rem]">Dashboard</p>
+          <Image height={16} width={16} src={layout_dashboard} alt="Dashboard" />
+          <span className="font-medium text-primary-color text-[0.75rem]">Dashboard</span>
         </div>
         <Image src={link_icon} alt="" />
       </div>
@@ -116,7 +116,7 @@ export default function Navbar({ children }: { children: ReactNode }) {
   return (
     <div className="flex gap-2">
       <nav className={`bg-[--table-fillin] flex flex-col justify-between relative min-h-[100vh] ${sideBar?.sidebar? "w-[300px]": "w-[64px]"}`}>
-        <div className="s">
+        <div className="flex flex-col justify-between">
           <SidebarHeader />
           <LocationSetter />
           <NavList />
