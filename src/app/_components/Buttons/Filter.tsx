@@ -8,7 +8,7 @@ export default function FilterButton(props: { handleOpen: () => void }) {
 
     return (
         <button onClick={handleOpen} type="button" className="text-primary-color bg-[#F1F5F9] flex items-center justify-center gap-[6px] rounded-button p-[0.75em]">
-            <Image src={filter} width={15} height={15} alt="Add Filter" />
+            <Image src={filter} width={15} height={15} alt="Filter" />
             <p className="font-semibold text-[0.75rem] leading-[1.25rem]">Add Filter</p>
         </button>
     )

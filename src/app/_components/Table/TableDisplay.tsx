@@ -25,12 +25,13 @@ export default function TableDisplay() {
     }), [filterSelected]);
 
     return (
-        <div className="border-[1px] border-[--tertiary-color] rounded-button mt-6"> 
-            <table className="w-full table-display">
+        <div className="border-[1px] border-[--tertiary-color] rounded-button mt-6 w-full h-fit overflow-x-scroll"> 
+            <table className="table-display w-full ">
                 <thead className="capitalize rounded-t-button block bg-[--table-fillin] border-b-[1px] border-b-tertiary-color">
                     <tr className="flex justify-between w-full py-[0.5em] px-[1em] rounded-tl-[10px] rounded-tr-[10px]">
                         <th>
-                            <input className="checkbox" type="checkbox" checked={false} />
+                            <label htmlFor="checkbox-header"></label>
+                            <input id="checkbox-header" className="checkbox" type="checkbox" checked={false} />
                         </th>
                         {
                             EditColumn?.columns.map((column: EditColumns) => {
@@ -46,13 +47,17 @@ export default function TableDisplay() {
                         }
                     </tr>
                 </thead>
-                <tbody className="block rounded-b-button h-[60vh]  overflow-y-scroll">
+                <tbody className="block rounded-b-button   overflow-y-scroll">
                     {
                         filteredRows.map((data: FilterRow) => {
                             return (
                                 <tr key={data.id} className="flex py-[0.5em] px-[1em]">
-                                    <td><input className="checkbox" type="checkbox" /></td>
-                                    {data["created on"] && <td><p>{data["created on"]}</p></td>}
+                                    <td>
+                                        <label htmlFor={`check-${data.id}`}></label>
+                                        <input id={`check-${data.id}`} className="checkbox" type="checkbox" />
+                                    </td>
+                                    {data["created on"] && <td><p>{data["created on"]}</p>
+                                    </td>}
                                     {data.payer && <td><p>{data.payer}</p></td>}
                                     {data.status && <StatusTag status={data.status} />}
                                     {data.email && <td><p>{data.email}</p></td>}

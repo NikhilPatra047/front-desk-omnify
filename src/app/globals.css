@@ -91,10 +91,10 @@
     background-repeat: no-repeat;
     background-size: 1.2em;
   }
-  
-  input[type=search]::-webkit-search-cancel-button {
+    input[type=search]::-webkit-search-cancel-button {
     appearance: none;
   }
+
 
   input[type=checkbox] {
     appearance: none;
@@ -112,18 +112,18 @@
   }
 
   .table-display > thead > tr > th {
-    width: 25%;
+    width: 146px;
     display: flex;
     align-items: center;
     gap: 5px;
   }
 
   .table-display > thead > tr > th:first-child {
-    width: 5%;
+    width: 20px;
   }
 
   .table-display > tbody > tr > td {
-    width: 25%;
+    width: 100%;
     padding-right: .5em;
   }
 
@@ -136,7 +136,7 @@
   }
 
   .table-display > tbody > tr > td:first-child {
-    width: 5%;
+    width: 20px;
     padding: 0;
   }
 
